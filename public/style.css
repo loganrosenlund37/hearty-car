@@ -1,0 +1,71 @@
+/* ------- SUBHEADER ------ */
+.subheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.subheader:hover {
+  cursor: pointer;
+}
+
+.selected {
+  color: cyan;
+}
+
+/* ------- HEADER -------  */
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+/* ------- ROW ------- */
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* ------- TABLE ------- */
+table,
+td {
+  border: 1px solid #333;
+}
+
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
+}
+
+/* ------- CONTAINER -------- */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.accountContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: red;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+
+.mini-row {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+}
+
+.mini-column {
+  flex-direction: column;
+}
+
+/* ------ SMALL ------- */
+.small:hover {
+  cursor: pointer;
+  font-weight: 600;
+}

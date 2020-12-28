@@ -1,21 +1,59 @@
 import React, { useState, useEffect } from 'react';
+import Home from './Home.jsx';
+import Mileage from './Mileage.jsx';
+import Account from './Account.jsx';
+import axios from 'axios';
 
 function App(props) {
 
-  useEffect(() => {
-    console.log('Mount and update.');
+  let [ view, setView ] = useState('mileage');
+  let [ current, setCurrent ] = useState("");
+  let [ user, setUser ] = useState({});
 
+  useEffect(() => {
+    if (user.firstName === undefined) {
+      axios.get(`/api/users/Logan`)
+        .then((response) => {
+          setUser(response.data[0]);
+          updateCurrent(response.data[0].default)
+        })
+        .catch(err => console.log(err));
+      }
+    console.log('Mount and update.');
     return () => {
       console.log('Cleanup.');
     };
   });
 
-  return (
-    <div>
-      <div> Hello {props.user.firstName} </div>
-      <div> WHATS UP DETROIT?? </div>
-    </div>
-  )
+  function updateCurrent(vehicle) {
+    axios.get(`/api/vehicles/${vehicle}`)
+      .then((response) => {
+        setCurrent(response.data[0]);
+      })
+      .catch(err => console.log(err));
+  }
+
+  function changeView(newView) {
+    setView(newView);
+  }
+
+  if (user.firstName === undefined) {
+    return (
+      <div> Loading ... </div>
+    )
+  } else if (view === 'home') {
+    return (
+      <Home {...props} user={user} onViewChange={changeView} current={current} view={view} />
+    )
+  } else if (view === 'mileage') {
+    return (
+      <Mileage {...props} onViewChange={changeView} current={current.name} view={view} />
+    )
+  } else if (view === 'account') {
+    return (
+      <Account {...props} user={user} onViewChange={changeView} view={view} />
+    )
+  }
 }
 
 export default App;
