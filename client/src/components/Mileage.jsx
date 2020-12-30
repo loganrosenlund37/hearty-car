@@ -15,7 +15,7 @@ function Mileage(props) {
       <h1 class="header"> {props.current} </h1>
       <hgroup class="subheader">
         <h2 onClick={handleViewChange}> Home </h2>
-        <h2 class="selected" onClick={handleViewChange}> Mileage </h2>
+        <h2 class="selected" > Mileage </h2>
         <h2 onClick={handleViewChange}> Account </h2>
       </hgroup>
       <div class="container">
