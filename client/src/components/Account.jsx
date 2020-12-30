@@ -14,7 +14,7 @@ function Account(props) {
       <hgroup class="subheader">
         <h2 onClick={handleViewChange}> Home </h2>
         <h2 onClick={handleViewChange}> Mileage </h2>
-        <h2 class="selected" onClick={handleViewChange}> Account </h2>
+        <h2 class="selected" > Account </h2>
       </hgroup>
       <div class="accountContainer">
         <div>
