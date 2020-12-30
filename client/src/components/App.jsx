@@ -6,8 +6,8 @@ import axios from 'axios';
 
 function App(props) {
 
-  let [ view, setView ] = useState('mileage');
-  let [ current, setCurrent ] = useState("");
+  let [ view, setView ] = useState('home');
+  let [ current, setCurrent ] = useState({data: []});
   let [ user, setUser ] = useState({});
 
   useEffect(() => {
@@ -33,6 +33,15 @@ function App(props) {
       .catch(err => console.log(err));
   }
 
+  function updateOdometer(miles) {
+    axios.post(`/api/odometer/?miles=${miles}&vehicle=${current.name}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(err => console.log(err));
+    updateCurrent(current.name);
+  }
+
   function changeView(newView) {
     setView(newView);
   }
@@ -43,7 +52,7 @@ function App(props) {
     )
   } else if (view === 'home') {
     return (
-      <Home {...props} user={user} onViewChange={changeView} current={current} view={view} />
+      <Home {...props} user={user} onViewChange={changeView} current={current} view={view} updateCurrent={updateCurrent} updateOdometer={updateOdometer}/>
     )
   } else if (view === 'mileage') {
     return (
