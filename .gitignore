@@ -5,3 +5,4 @@ bundle.js
 bundle.js.LICENSE.txt
 *.DS_Store
 schema.sql
+averageMileageUpdater.js
