@@ -8,13 +8,6 @@ const Modal = ({ children, activator }) => {
   const content = show && (
     <div class="overlay">
       <div class="modal">
-        <button
-          class="modal-close"
-          type="button"
-          onClick={() => setShow(false)}
-        >
-          X
-        </button>
         <div class="modal-body">
           {children}
           <button onClick={() => setShow(false)}> CLOSE </button>

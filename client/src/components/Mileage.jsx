@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Modal from './Modal.jsx';
 
 function Mileage(props) {
-  let [ date, setDate ] = useState("");
-  let [ odometer, setOdometer ] = useState();
-  let [ gallons, setGallons ] = useState();
-  let [ ppg, setPpg ] = useState();
+  const [ date, setDate ] = useState("");
+  const [ odometer, setOdometer ] = useState();
+  const [ gallons, setGallons ] = useState();
+  const [ ppg, setPpg ] = useState();
+  // const [ show, setShow ] = useState(false);
 
   function handleViewChange(event) {
     props.onViewChange(event.target.innerText.toLowerCase());
@@ -44,11 +45,13 @@ function Mileage(props) {
   } else {
     return (
       <div>
-        <h1 class="header"> {props.current} </h1>
+        <div class="header">
+          <h1> {props.current} </h1>
+        </div>
         <hgroup class="subheader">
-          <h2 onClick={handleViewChange}> Home </h2>
+          <h2 class="home-sub" onClick={handleViewChange}> Home </h2>
           <h2 class="selected" > Mileage </h2>
-          <h2 onClick={handleViewChange}> Account </h2>
+          <h2 class="account" onClick={handleViewChange}> Account </h2>
         </hgroup>
         <div class="container">
           <div>
@@ -63,10 +66,12 @@ function Mileage(props) {
                 </button>
               )}
             >
-              <h1> Would you like to add a fillup? </h1>
-              <form>
+              <h4> Fill in all fields </h4>
+              <form class="form">
                 <label>
-                  Date:
+                  <h5>
+                    Date:
+                  </h5>
                   <input
                     name="date"
                     type="string"
@@ -74,28 +79,34 @@ function Mileage(props) {
                     onChange={handleChange} />
                 </label>
                 <label>
-                  Odometer:
+                  <h5>
+                    Odometer:
+                  </h5>
                   <input
                     name="odometer"
                     value={odometer}
                     onChange={handleChange} />
                 </label>
                 <label>
-                  Gallons:
+                  <h5>
+                    Gallons:
+                  </h5>
                   <input
                     name="gallons"
                     value={gallons}
                     onChange={handleChange} />
                 </label>
                 <label>
-                  Price per gallon:
+                  <h5>
+                    Price per gallon:
+                  </h5>
                   <input
                     name="ppg"
                     value={ppg}
                     onChange={handleChange} />
                 </label>
               </form>
-              <button onClick={handleClick}> Submit </button>
+              <button onClick={handleClick}> SUBMIT </button>
             </Modal>
           </div>
             <table>
@@ -109,7 +120,7 @@ function Mileage(props) {
               <tbody>
                 <tr>
                   <td> {props.mileage.average.average} </td>
-                  <td> {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(props.mileage.average.totalMoney)} </td>
+                  <td> {Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(props.mileage.average.totalMoney)} </td>
                   <td> {props.mileage.average.totalFuel} </td>
                 </tr>
               </tbody>
@@ -119,7 +130,6 @@ function Mileage(props) {
                 <tr>
                   <td> Date </td>
                   <td> MPG </td>
-                  <td> Gallons </td>
                   <td> Cost </td>
                 </tr>
               </thead>
@@ -129,7 +139,6 @@ function Mileage(props) {
                     <tr>
                       <td> {fillup.date} </td>
                       <td> {fillup.mpg} </td>
-                      <td> {fillup.gallons} </td>
                       <td> {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(fillup.total)} </td>
                     </tr>
                   )

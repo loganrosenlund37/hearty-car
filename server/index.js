@@ -15,8 +15,6 @@ app.use(express.static('public'));
 app.get('/api/users/:name', async (req, res) => {
   const { name } = req.params;
 
-  console.log(`The name is: ${name}`);
-
   try {
     const user = await db.query(`FOR a IN users FILTER a.firstName == '${name}' RETURN a`);
     const result = await user.all();
@@ -29,9 +27,6 @@ app.get('/api/users/:name', async (req, res) => {
 
 app.get('/api/vehicles/:vehicleName', async (req, res) => {
   const { vehicleName } = req.params;
-
-  console.log('The vehicle is:');
-  console.log(vehicleName);
   
   try {
     const vehicle = await db.query(`FOR a IN vehicles FILTER a.name == "${vehicleName}" RETURN a`);

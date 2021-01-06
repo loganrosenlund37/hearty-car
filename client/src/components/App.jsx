@@ -88,15 +88,30 @@ function App(props) {
     )
   } else if (view === 'home') {
     return (
-      <Home {...props} user={user} onViewChange={changeView} current={current} view={view} updateCurrent={updateCurrent} updateOdometer={updateOdometer}/>
+      <div>
+        <Home {...props} user={user} onViewChange={changeView} current={current} view={view} updateCurrent={updateCurrent} updateOdometer={updateOdometer}/>
+        <div class="footer">
+          &#169; Copyright 2021
+        </div>
+      </div>
     )
   } else if (view === 'mileage') {
     return (
-      <Mileage {...props} onViewChange={changeView} current={current.name} view={view} mileage={mileage} updateAverageMileage={updateAverageMileage} />
+      <div>
+        <Mileage {...props} onViewChange={changeView} current={current.name} view={view} mileage={mileage} updateAverageMileage={updateAverageMileage} />
+        <div class="footer">
+        &#169; Copyright 2021
+        </div>
+      </div>
     )
   } else if (view === 'account') {
     return (
-      <Account {...props} user={user} onViewChange={changeView} view={view} />
+      <div>
+        <Account {...props} user={user} onViewChange={changeView} view={view} />
+        <div class="footer">
+        &#169; Copyright 2021
+        </div>
+      </div>
     )
   }
 }

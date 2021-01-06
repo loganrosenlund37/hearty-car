@@ -35,16 +35,20 @@ function Home(props) {
   }
 
   return (
-    <div>
-      <h1 class="header"> Hello {props.user.firstName} </h1>
-      <hgroup class="subheader" >
+    <div class="home">
+      <div class="header">
+        <h1> Hello {props.user.firstName} </h1>
+      </div>
+      <hgroup class="subheader">
         <h2 class="selected" > Home </h2>
-        <h2 onClick={handleViewChange}> Mileage </h2>
-        <h2 onClick={handleViewChange}> Account </h2>
+        <h2 class="mileage" onClick={handleViewChange}> Mileage </h2>
+        <h2 class="account" onClick={handleViewChange}> Account </h2>
       </hgroup>
       <div>
-        <div>
-          {props.current.name}
+        <div class="row">
+          <h3>
+            Vehicle: {props.current.name}
+          </h3>
           <Modal
             activator={({ setShow }) => (
               <small
@@ -57,8 +61,10 @@ function Home(props) {
             )}
             >
             <form>
-              <label>
-                Select vehicle:
+              <label class="slct-vhcl">
+                <h5>
+                  Select vehicle:
+                </h5>
                 <select onChange={handleChange}>
                   {props.user.vehicleList.map((vehicle) => {
                     return <option value={vehicle}> {vehicle} </option>
@@ -69,8 +75,10 @@ function Home(props) {
             <button onClick={handleVehicleChange} > SUBMIT </button>
           </Modal>
         </div>
-        <div>
-          {props.current.odometer}
+        <div class="row">
+          <h3>
+            Odometer: {Intl.NumberFormat('en-us').format(props.current.odometer)} miles
+          </h3>
           <Modal
             activator={({ setShow }) => (
               <small
@@ -84,7 +92,9 @@ function Home(props) {
           >
             <form>
               <label>
-                Current miles:
+                <h5>
+                  Current miles:
+                </h5>
                 <input type="text" value={miles} onChange={handleOdometerChange} />
               </label>
             </form>
@@ -93,13 +103,15 @@ function Home(props) {
         </div>
       </div>
       <button onClick={addMaintenanceItem}> ADD MAINTENANCE ITEM </button>
-      <div>
-        UPCOMING MAINTENANCE:
+      <div class="home-body">
+        <h4>
+          UPCOMING MAINTENANCE:
+        </h4>
         {props.current.data.map((item) => {
           if (item.due_mileage > props.current.odometer) 
           return <div>
-                   <div> {item.desc} </div>
-                   <div> {item.due_mileage} </div>
+                   <div class="maitna"> <bold> Maintenance item: </bold> {item.desc} </div>
+                   <div class="maitda"> Due in: <bold> {Intl.NumberFormat('en-us').format(item.due_mileage - props.current.odometer)} </bold>  miles </div>
                  </div>
         })}
       </div>
