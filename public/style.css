@@ -1,22 +1,52 @@
-/* ------- SUBHEADER ------ */
-.subheader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.subheader:hover {
-  cursor: pointer;
-}
-
-.selected {
-  color: cyan;
+body {
+  background-color: #FCF8EC;
 }
 
 /* ------- HEADER -------  */
 .header {
   display: flex;
   justify-content: center;
+  color: #456268;
+}
+
+/* ------- SUBHEADER ------ */
+.subheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: #79A3B1;
+}
+
+/* .subheader:hover {
+  cursor: pointer;
+} */
+
+.selected {
+  color: #456268;
+  cursor: default;
+}
+
+.mileage:hover {
+  color:rgb(39, 85, 114);
+  cursor: pointer;
+}
+
+.home-sub:hover {
+  color:rgb(39, 85, 114);
+  cursor: pointer;
+}
+
+.account:hover {
+  color:rgb(39, 85, 114);
+  cursor: pointer;
+}
+
+/* ----- FOOTER ------ */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 40%;
+  right: 40%;
 }
 
 /* ------- ROW ------- */
@@ -49,7 +79,6 @@ tfoot {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: red;
   align-items: flex-start;
   margin-left: 10px;
 }
@@ -69,44 +98,58 @@ tfoot {
   cursor: pointer;
   font-weight: 600;
 }
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 98;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+
+.small {
+  align-self: center;
 }
 
-.modal {
-  position: relative;
-  z-index: 99;
-  width: 100%;
-  max-width: 20rem;
-  max-height: 100%;
-  margin: 0 auto;
+/* ----- HOME_BODY ------- */
+.home-body {
+  margin-right: 2px;
 }
 
-.modal-close {
-  position: absolute;
-  top: -1.5rem;
-  right: 0;
-  padding: 5px;
-  border: 0;
-  -webkit-appearance: none;
-  background: none;
-  color: white;
-  cursor: pointer;
+.maitna {
+  color: #456268;
 }
 
-.modal-body {
-  padding: 1.25rem 1.5rem;
-  border-radius: 4px;
-  background-color: white;
+.maitda {
+  color: #79A3B1;
+}
+
+h3 {
+  margin: 0px 10px 0px 0px;
+}
+
+/* ----- FORM ------- */
+.form {
+  color: red;
+}
+
+h5 {
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+h4 {
+  margin: 5px 0px;
+}
+
+/* ----- MODAL BUTTONS -------- */
+.cnt-btn {
+  color: black;
+}
+
+/* ----- SELECT VEHICLE ------ */
+.slct-vhcl {
+  color: black;
+}
+
+/* ------- HOME ------- */
+.home {
+  margin-left: 10px;
+}
+
+bold {
+  font-weight: 500;
+  color: black;
 }
