@@ -1,27 +1,20 @@
-import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
-const Modal = ({ children, activator }) => {
-  
-  const [ show, setShow ] = useState(false);
+const modalRoot = document.getElementById("modal");
 
-  const content = show && (
-    <div class="overlay">
-      <div class="modal">
-        <div class="modal-body">
-          {children}
-          <button onClick={() => setShow(false)}> CLOSE </button>
-        </div>
-      </div>
-    </div>
-  )
+const Modal = ({ children }) => {
+  const elRef = useRef(null);
+  if (!elRef.current) {
+    elRef.current = document.createElement("div");
+  }
 
-  return (
-    <>
-      {activator({ setShow })}
-      {createPortal(content, document.body)}
-    </>
-  )
+  useEffect(() => {
+    modalRoot.appendChild(elRef.current);
+    return () => modalRoot.removeChild(elRef.current)
+  }, []);
+
+  return createPortal(<div>{children}</div>, elRef.current);
 
 }
 
