@@ -3,6 +3,13 @@
 
 <head>
   <title>HeartyCar</title>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="./images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="This is a progressive web application." />
+  <link rel="apple-touch-icon" href="./images/logo.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="modal.css">
 </head>
@@ -11,6 +18,17 @@
   <div>
     <div id="app"></div>
   </div>
+  <div id="modal"></div>
+  <noscript> Javascript is required to load this page </noscript>
+  <script>
+    if('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./serviceworker.js')
+          .then((reg) => console.log('Success: ', reg.scope))
+          .catch((err) => console.log('Failure: ', err));
+      })
+    }
+  </script>
   <script src="bundle.js"></script>
 </body>
 
