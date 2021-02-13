@@ -25,7 +25,7 @@ function App(props) {
       return () => {
         console.log('Cleanup.');
       };
-    });
+    }, []);
     
     async function updateCurrent(vehicle) {
       try {
