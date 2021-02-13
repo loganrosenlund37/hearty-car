@@ -6,6 +6,7 @@ function Mileage(props) {
   const [ odometer, setOdometer ] = useState();
   const [ gallons, setGallons ] = useState();
   const [ ppg, setPpg ] = useState();
+  const [ showModal, setShowModal ] = useState(false);
   // const [ show, setShow ] = useState(false);
 
   function handleViewChange(event) {
@@ -38,6 +39,8 @@ function Mileage(props) {
     }
   }
 
+  const toggleModal = () => setShowModal(!showModal);
+
   if (!props.mileage.average) {
     return (
       <div> Loading... </div>
@@ -55,59 +58,48 @@ function Mileage(props) {
         </hgroup>
         <div class="container">
           <div>
-            <Modal
-              activator={({ setShow }) => (
-                <button
-                  class="small"
-                  type="button"
-                  onClick={() => setShow(true)}
-                >
-                  Add fillup
-                </button>
-              )}
-            >
-              <h4> Fill in all fields </h4>
-              <form class="form">
-                <label>
-                  <h5>
-                    Date:
-                  </h5>
-                  <input
-                    name="date"
-                    type="string"
-                    value={date}
-                    onChange={handleChange} />
-                </label>
-                <label>
-                  <h5>
-                    Odometer:
-                  </h5>
-                  <input
-                    name="odometer"
-                    value={odometer}
-                    onChange={handleChange} />
-                </label>
-                <label>
-                  <h5>
-                    Gallons:
-                  </h5>
-                  <input
-                    name="gallons"
-                    value={gallons}
-                    onChange={handleChange} />
-                </label>
-                <label>
-                  <h5>
-                    Price per gallon:
-                  </h5>
-                  <input
-                    name="ppg"
-                    value={ppg}
-                    onChange={handleChange} />
-                </label>
-              </form>
-              <button onClick={handleClick}> SUBMIT </button>
-            </Modal>
+            <button onClick={toggleModal}> Add fillup </button>
+            {
+              showModal ? (
+                <Modal>
+                  <div>
+                    <h4> Fill in all fields </h4>
+                    <form class="form">
+                      <label>
+                        <h5> Date: </h5>
+                        <input
+                          name="date"
+                          type="string"
+                          value={date}
+                          onChange={handleChange} />
+                      </label>
+                      <label>
+                        <h5> Odometer: </h5>
+                        <input
+                          name="odometer"
+                          value={odometer}
+                          onChange={handleChange} />
+                      </label>
+                      <label>
+                        <h5> Gallons: </h5>
+                        <input
+                          name="gallons"
+                          value={gallons}
+                          onChange={handleChange} />
+                      </label>
+                      <label>
+                        <h5> Price per gallon: </h5>
+                        <input
+                          name="ppg"
+                          value={ppg}
+                          onChange={handleChange} />
+                      </label>
+                    </form>
+                    <button onClick={handleClick}> Submit </button>
+                    <button onClick={toggleModal} > Cancel </button>
+                  </div>
+                </Modal>
+              ) : null}
           </div>
             <table>
               <thead>
